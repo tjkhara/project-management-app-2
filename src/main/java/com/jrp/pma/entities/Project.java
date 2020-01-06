@@ -1,9 +1,12 @@
 package com.jrp.pma.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Project {
@@ -14,6 +17,9 @@ public class Project {
 	private String name;
 	private String stage;
 	private String description;
+	
+	@OneToMany(mappedBy="project")
+	private List<Employee> employees;
 
 	public Project() {
 
