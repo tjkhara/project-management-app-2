@@ -1,5 +1,6 @@
 package com.jrp.pma.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +16,9 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 	private String email;
-	
-	@ManyToOne
-	@JoinColumn(name="project_id")
+
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name = "project_id")
 	private Project project;
 
 	public Employee() {
@@ -61,6 +62,14 @@ public class Employee {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 }
