@@ -3,6 +3,7 @@ package com.jrp.pma.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +15,12 @@ import com.jrp.pma.dao.ProjectRepository;
 import com.jrp.pma.dao.dto.ChartData;
 import com.jrp.pma.dao.dto.EmployeeProject;
 import com.jrp.pma.entities.Project;
-import com.jrp.pma.springExample.Car;
 
 @Controller
 public class HomeController {
 	
-	@Autowired
-	Car car;
+	@Value("${version}")
+	private String ver;
 	
 	@Autowired
 	ProjectRepository proRepo;
@@ -30,6 +30,9 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String displayHome(Model model) throws JsonProcessingException {
+		
+		model.addAttribute("versionNumber", ver);
+		
 		
 		List<Project> projects = proRepo.findAll();
 		model.addAttribute("projects",projects);
