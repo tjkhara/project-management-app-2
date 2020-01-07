@@ -1,8 +1,6 @@
 package com.jrp.pma.controllers;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +14,13 @@ import com.jrp.pma.dao.ProjectRepository;
 import com.jrp.pma.dao.dto.ChartData;
 import com.jrp.pma.dao.dto.EmployeeProject;
 import com.jrp.pma.entities.Project;
+import com.jrp.pma.springExample.Car;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	Car car;
 	
 	@Autowired
 	ProjectRepository proRepo;
